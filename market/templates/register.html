@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Python Project | Register
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div style="padding: 25px;width: 400px;">
+                <h1>Register Yourself Here!</h1>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.fullname(class='form-control', placeholder='Full Name', required='required') }}
+                    <br>
+                    {{ form.username(class='form-control', placeholder='Username', required='required') }}
+                    <br>
+                    {{ form.email(class='form-control', placeholder='Valid Email Address', required='required') }}
+                    <br>
+                    {{ form.password(class='form-control', placeholder='Password', required='required') }}
+                    <br>
+                    {{ form.budget(class='form-control', placeholder='Budget', value='1000') }}
+                    <br>
+                    {{ form.submit(class='btn btn-outline btn-primary btn-block') }}
+                    <br>
+                </form>
+                <div>
+                    <p>Already have an account?
+                    <a href="{{ url_for('login_page') }}">Login Here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Python Project | Users
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <h1>Users Data</h1>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <!-- Your Columns HERE -->
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">USERNAME</th>
+                        <th scope="col">EMAIL</th>
+                        <!-- <th scope="col">PASSWORD</th> -->
+                        <th scope="col">BUDGET</th>
+                        <th scope="col">OPTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your rows inside the table HERE: -->
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.fullname }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <!-- <td>{{ user.password }}</td> -->
+                            <td>{{ user.budget }}$</td>
+                            <td>
+                                <a href="{{ url_for('update_page') }}" class="btn btn-outline btn-warning btn-sm">Update</a>
+                                <a href="#" class="btn btn-outline btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

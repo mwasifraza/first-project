@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Python Project | Login
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div style="padding: 25px;width: 400px;">
+                <h1>Login</h1>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <br>
+                    {{ form.username(class='form-control', placeholder='Username', required='required') }}
+                    <br>
+                    {{ form.password(class='form-control', placeholder='Password', required='required') }}
+                    <br>
+                    {{ form.submit(class='btn btn-outline btn-primary btn-block') }}
+                    <br>
+                </form>
+                <div>
+                    <p>Don't have an account?
+                    <a href="{{ url_for('register_page') }}">Register Here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

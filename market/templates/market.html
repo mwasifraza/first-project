@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Python Project | Market
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row mt-20">
+                <div class="col-8">
+                    <h3>Avaliable items on the Market</h3>
+                    <p>Click on one of the item to start buying.</p>
+                    <br>
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <!-- Your Columns HERE -->
+                                <th scope="col">ID</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">BARCODE</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">OPTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Your rows inside the table HERE: -->
+                            {% for item in items %}
+                                {% include 'includes/modal.html' %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.barcode }}</td>
+                                    <td>{{ item.price }}$</td>
+                                    <td>
+                                        <button class="btn btn-outline btn-info btn-sm" data-toggle="modal" data-target="#Modal-MoreInfo-{{ item.id }}">
+                                            <i class="fas fa-info-circle"></i>
+                                            More Info
+                                        </button>
+                                        <button class="btn btn-outline btn-primary btn-sm" data-toggle="modal" data-target="#Modal-PurchaseConfirm-{{ item.id }}">
+                                            <i class="fas fa-cart-plus"></i>
+                                            Purchase
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-4">
+                    <h3>Owned items on the Market</h3>
+                    <p>Click on the sell item to put an item back.</p>
+                    <br>
+                    <div class="row">
+                        {% for owned_item in owned_items %}
+                            {% include 'includes/owned_modal.html' %}
+                            <div class="col-md-6">
+                                <div style="margin-bottom: 5px;" class="card bg-dark text-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ owned_item.name }}</h5>
+                                        <button type="button" class="btn btn-outline-danger" style="margin-bottom:5px;" data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+                                            <i class="fas fa-minus-circle"></i>
+                                            Sell Item
+                                        </button>
+                                        <p class="card-text"><strong>
+                                            This item costs {{ owned_item.price }}$
+                                        </strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
